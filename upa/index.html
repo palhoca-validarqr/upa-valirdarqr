@@ -36,30 +36,28 @@
 
   <script>
     async function carregar() {
-      const params = new URLSearchParams(window.location.search);
-      const id = params.get("id");
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get("id");
 
-      const resp = await fetch("/dados.json");
-      const dados = await resp.json();
+        // Caminho corrigido
+        const resp = await fetch("dados.json");
+        const dados = await resp.json();
 
-      if (dados[id]) {
-        document.getElementById("conteudo").innerHTML = `
-          <p><b>Atendimento de número:</b> ${dados[id].atendimento}</p>
-          <p><b>Data do atendimento:</b> ${dados[id].data}</p>
-          <p><b>Situação do Atendimento:</b> ${dados[id].situacao}</p>
-          <p><b>Unidade:</b> ${dados[id].unidade}</p>
-          <p><b>Profissional:</b> ${dados[id].profissional}</p>
-          <p><b>CRM:</b> ${dados[id].crm}</p>
-          <p><b>Paciente:</b> ${dados[id].paciente}</p>
-          <p><b>CNS do Paciente:</b> ${dados[id].cns}</p>
-          <p><b>CPF do Paciente:</b> ${dados[id].cpf}</p>
-        `;
-      } else {
-        document.getElementById("conteudo").innerHTML = "<p>❌ Atendimento não encontrado.</p>";
-      }
-    }
-    carregar();
-  </script>
-</body>
-</html>
-
+        if (dados[id]) {
+          document.getElementById("conteudo").innerHTML = `
+            <p><b>Atendimento de número:</b> ${dados[id].atendimento}</p>
+            <p><b>Data do atendimento:</b> ${dados[id].data}</p>
+            <p><b>Situação do Atendimento:</b> ${dados[id].situacao}</p>
+            <p><b>Unidade:</b> ${dados[id].unidade}</p>
+            <p><b>Profissional:</b> ${dados[id].profissional}</p>
+            <p><b>CRM:</b> ${dados[id].crm}</p>
+            <p><b>Paciente:</b> ${dados[id].paciente}</p>
+            <p><b>CNS do Paciente:</b> ${dados[id].cns}</p>
+            <p><b>CPF do Paciente:</b> ${dados[id].cpf}</p>
+          `;
+        } else {
+          document.getElementById("conteudo").innerHTML = "<p>❌ Atendimento não encontrado.</p>";
+        }
+      } catch (e) {
+        document.getElementById("conteudo").innerHTML = "<p>⚠️ Erro
