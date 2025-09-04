@@ -60,4 +60,11 @@
           document.getElementById("conteudo").innerHTML = "<p>❌ Atendimento não encontrado.</p>";
         }
       } catch (e) {
-        document.getElementById("conteudo").innerHTML = "<p>⚠️ Erro
+        document.getElementById("conteudo").innerHTML = "<p>⚠️ Erro ao carregar os dados.</p>";
+        console.error("Erro:", e);
+      }
+    }
+    carregar();
+  </script>
+</body>
+</html>
